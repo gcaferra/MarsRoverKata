@@ -13,19 +13,16 @@ namespace MarsRover.Test
             
             sut.Point.ShouldBeEquivalentTo(point);
         }
-    }
 
-    public class Point
-    {
-    }
-
-    public class Rover
-    {
-        public Rover(Point point)
+        [Test]
+        public void Point_contains_X_and_Y()
         {
-            Point = point;
+            var point = new Point {X = 1, Y = 2};
+            
+            var sut = new Rover(point);
+            
+            sut.Point.X.ShouldBe(1);
+            sut.Point.Y.ShouldBe(2);
         }
-
-        public Point Point { get; set; }
     }
 }
