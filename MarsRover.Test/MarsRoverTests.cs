@@ -24,5 +24,17 @@ namespace MarsRover.Test
             sut.Point.X.ShouldBe(1);
             sut.Point.Y.ShouldBe(2);
         }
+
+        [Test]
+        public void Rover_can_move_down()
+        {
+            var point = new Point {X = 1, Y = 1};
+            
+            var sut = new Rover(point);
+
+            sut.Move(new[] {"f", "f"});
+            
+            sut.Point.X.ShouldBe(3);
+        }
     }
 }

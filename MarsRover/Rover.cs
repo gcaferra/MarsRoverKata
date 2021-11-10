@@ -1,4 +1,6 @@
-﻿namespace MarsRover
+﻿using System;
+
+namespace MarsRover
 {
     public class Rover
     {
@@ -7,6 +9,19 @@
             Point = point;
         }
 
-        public Point Point { get; set; }
+        public Point Point { get; }
+
+        public void Move(string[] commands)
+        {
+            foreach (var command in commands)
+            {
+                switch (command)
+                {
+                    case "f":
+                        Point.X++;
+                        break;
+                }
+            }
+        }
     }
 }
