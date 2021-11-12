@@ -60,5 +60,29 @@ namespace MarsRover.Test
             
             sut.Point.Y.ShouldBe(1);
         }
+
+        [Test]
+        public void the_Rover_can_move_on_Right()
+        {
+            var point = new Point {X = 1, Y = 3};
+            
+            var sut = new Rover(point);
+
+            sut.Move(new[] {"r", "r"});
+            
+            sut.Point.Y.ShouldBe(5);
+        }
+
+        [Test]
+        public void Unknown_commands_are_ignored()
+        {
+            var point = new Point {X = 1, Y = 3};
+            
+            var sut = new Rover(point);
+
+            sut.Move(new[] {"1", "e","d","q"});
+            
+            sut.Point.ShouldBeEquivalentTo(point);
+        }
     }
 }
