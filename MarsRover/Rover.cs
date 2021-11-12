@@ -21,6 +21,9 @@ namespace MarsRover
                         Point.X++;
                         break;
                     case "b":
+                        Point.X--;
+                        break;
+                    case "l":
                         Point.Y--;
                         break;
                 }

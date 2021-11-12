@@ -40,11 +40,23 @@ namespace MarsRover.Test
         [Test]
         public void Rover_can_move_backward()
         {
-            var point = new Point {X = 1, Y = 3};
+            var point = new Point {X = 3, Y = 3};
             
             var sut = new Rover(point);
 
             sut.Move(new[] {"b", "b"});
+            
+            sut.Point.X.ShouldBe(1);
+        }
+
+        [Test]
+        public void the_Rover_can_move_on_left()
+        {
+            var point = new Point {X = 1, Y = 3};
+            
+            var sut = new Rover(point);
+
+            sut.Move(new[] {"l", "l"});
             
             sut.Point.Y.ShouldBe(1);
         }
