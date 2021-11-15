@@ -1,4 +1,4 @@
-﻿using System;
+﻿using MarsRover.Enums;
 
 namespace MarsRover
 {
@@ -10,6 +10,7 @@ namespace MarsRover
         }
 
         public Point Point { get; }
+        public Directions Direction { get; set; }
 
         public void Move(string[] commands)
         {
@@ -33,4 +34,5 @@ namespace MarsRover
             }
         }
     }
+    
 }

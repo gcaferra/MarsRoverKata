@@ -1,3 +1,5 @@
+using System.ServiceModel;
+using MarsRover.Enums;
 using NUnit.Framework;
 using Shouldly;
 
@@ -96,6 +98,18 @@ namespace MarsRover.Test
             sut.Move(new[] {Commands.Forward, Commands.Forward, Commands.Right, Commands.Right, Commands.Left, Commands.Backward});
             
             sut.Point.ShouldBeEquivalentTo(expected);
+        }
+
+        [Test]
+        public void the_Rover_has_directions()
+        {
+
+            var point = new Point {X = 1, Y = 1};
+
+            var sut = new Rover(point);
+            
+            sut.Direction.ShouldBe(Directions.North);
+
         }
     }
 }

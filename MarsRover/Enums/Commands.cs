@@ -1,6 +1,6 @@
-﻿namespace MarsRover
+﻿namespace MarsRover.Enums
 {
-    public class Commands
+    public static class Commands
     {
         public const string Forward = "f";
         public const string Backward = "b";
