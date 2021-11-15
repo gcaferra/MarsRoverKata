@@ -84,5 +84,18 @@ namespace MarsRover.Test
             
             sut.Point.ShouldBeEquivalentTo(point);
         }
+
+        [Test]
+        public void several_commands_are_executed_in_sequence()
+        {
+            var point = new Point {X = 1, Y = 1};
+            var expected = new Point {X = 2, Y = 2};
+            
+            var sut = new Rover(point);
+
+            sut.Move(new[] {Commands.Forward, Commands.Forward, Commands.Right, Commands.Right, Commands.Left, Commands.Backward});
+            
+            sut.Point.ShouldBeEquivalentTo(expected);
+        }
     }
 }
