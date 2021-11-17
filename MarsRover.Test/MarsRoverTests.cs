@@ -51,7 +51,7 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void the_Rover_can_move_on_left()
+        public void the_Rover_can_move_on_Left()
         {
             var point = new Point {X = 1, Y = 3};
             
@@ -59,7 +59,7 @@ namespace MarsRover.Test
 
             sut.Move(new[] {"l", "l"});
             
-            sut.Position.Y.ShouldBe(1);
+            sut.Position.Y.ShouldBe(5);
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace MarsRover.Test
 
             sut.Move(new[] {"r", "r"});
             
-            sut.Position.Y.ShouldBe(5);
+            sut.Position.Y.ShouldBe(1);
         }
 
         [Test]
@@ -89,8 +89,8 @@ namespace MarsRover.Test
         [Test]
         public void several_commands_are_executed_in_sequence()
         {
-            var point = new Point {X = 1, Y = 1};
-            var expected = new Point {X = 2, Y = 2};
+            var point = new Point {X = 2, Y = 2};
+            var expected = new Point {X = 3, Y = 1};
             
             var sut = new Rover(point);
 
@@ -126,7 +126,7 @@ namespace MarsRover.Test
         public void changing_the_direction_also_change_the_command_direction()
         {
             var point = new Point {X = 2, Y = 2};
-            var expected = new Point{ X = 3, Y = 3};
+            var expected = new Point{ X = 3, Y = 1};
             string[] commands ={Commands.Forward, Directions.West, Commands.Forward };
 
             var sut = new Rover(point);

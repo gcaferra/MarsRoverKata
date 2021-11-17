@@ -19,18 +19,6 @@ namespace MarsRover
             {
                 switch (command)
                 {
-                    case "f":
-                        Position.X = Forward(Position.X);
-                        break;
-                    case "b":
-                        Position.X = Backward(Position.X);
-                        break;
-                    case "l":
-                        Position.Y = Backward(Position.Y);
-                        break;
-                    case "r":
-                        Position.Y = Forward(Position.Y);
-                        break;
                     case Directions.West:
                         Direction = Directions.West;
                         break;
@@ -43,13 +31,93 @@ namespace MarsRover
                     case Directions.South:
                         Direction = Directions.South;
                         break;
+                    default:
+                        if(Direction == Directions.South)
+                            MoveSouth(command);
+                        if(Direction == Directions.East)
+                            MoveEast(command);
+                        if(Direction == Directions.West)
+                            MoveWest(command);
+                        if(Direction == Directions.North)
+                            MoveNorth(command);
+                        break;
                 }
             }
         }
-        
-        static int Forward(int position) => ++position;
 
-        static int Backward(int position) => --position;
+        void MoveSouth(string command)
+        {
+            switch (command)
+            {
+                case "f":
+                    Position.X += 1;
+                    break;
+                case "b":
+                    Position.X -= 1;
+                    break;
+                case "l":
+                    Position.Y += 1;
+                    break;
+                case "r":
+                    Position.Y -= 1;
+                    break;
+            }
+        }
+
+        void MoveNorth(string command)
+        {
+            switch (command)
+            {
+                case "f":
+                    Position.X -= 1;
+                    break;
+                case "b":
+                    Position.X += 1;
+                    break;
+                case "l":
+                    Position.Y -= 1;
+                    break;
+                case "r":
+                    Position.Y += 1;
+                    break;
+            }
+        }
+        void MoveWest(string command)
+        {
+            switch (command)
+            {
+                case "f":
+                    Position.Y -= 1;
+                    break;
+                case "b":
+                    Position.Y += 1;
+                    break;
+                case "l":
+                    Position.X += 1;
+                    break;
+                case "r":
+                    Position.X -= 1;
+                    break;
+            }
+        }
+        void MoveEast(string command)
+        {
+            switch (command)
+            {
+                case "f":
+                    Position.Y += 1;
+                    break;
+                case "b":
+                    Position.Y -= 1;
+                    break;
+                case "l":
+                    Position.X -= 1;
+                    break;
+                case "r":
+                    Position.X += 1;
+                    break;
+            }
+        }
     }
     
 }
