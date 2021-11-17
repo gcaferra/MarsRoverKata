@@ -7,7 +7,7 @@ namespace MarsRover
         public Rover(Point position)
         {
             Position = position;
-            Direction = Directions.North;
+            Direction = Directions.South;
         }
 
         public Point Position { get; }

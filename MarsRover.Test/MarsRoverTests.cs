@@ -100,13 +100,13 @@ namespace MarsRover.Test
         }
 
         [Test]
-        public void the_Rover_has_directions()
+        public void the_Rover_has_South_direction_when_land()
         {
             var point = new Point {X = 1, Y = 1};
 
             var sut = new Rover(point);
             
-            sut.Direction.ShouldBe(Directions.North);
+            sut.Direction.ShouldBe(Directions.South);
         }
 
         [Test]
@@ -120,6 +120,20 @@ namespace MarsRover.Test
             sut.Move(commands);
             
             sut.Direction.ShouldBeEquivalentTo(Directions.West);
+        }
+    
+        [Test]
+        public void changing_the_direction_also_change_the_command_direction()
+        {
+            var point = new Point {X = 2, Y = 2};
+            var expected = new Point{ X = 3, Y = 3};
+            string[] commands ={Commands.Forward, Directions.West, Commands.Forward };
+
+            var sut = new Rover(point);
+
+            sut.Move(commands);
+
+            sut.Position.ShouldBeEquivalentTo(expected);
         }
     }
 }
