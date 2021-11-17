@@ -1,10 +1,10 @@
 ﻿namespace MarsRover.Enums
 {
-    public enum Directions
+    public static class Directions
     {
-        North,
-        East,
-        South,
-        West
+        public const string North = "N";
+        public const string East = "E";
+        public const string South = "S";
+        public const string West = "W";
     }
 }

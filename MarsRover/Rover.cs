@@ -4,13 +4,14 @@ namespace MarsRover
 {
     public class Rover
     {
-        public Rover(Point point)
+        public Rover(Point position)
         {
-            Point = point;
+            Position = position;
+            Direction = Directions.North;
         }
 
-        public Point Point { get; }
-        public Directions Direction { get; set; }
+        public Point Position { get; }
+        public string Direction { get; private set; }
 
         public void Move(string[] commands)
         {
@@ -19,20 +20,36 @@ namespace MarsRover
                 switch (command)
                 {
                     case "f":
-                        Point.X++;
+                        Position.X = Forward(Position.X);
                         break;
                     case "b":
-                        Point.X--;
+                        Position.X = Backward(Position.X);
                         break;
                     case "l":
-                        Point.Y--;
+                        Position.Y = Backward(Position.Y);
                         break;
                     case "r":
-                        Point.Y++;
+                        Position.Y = Forward(Position.Y);
+                        break;
+                    case Directions.West:
+                        Direction = Directions.West;
+                        break;
+                    case Directions.North:
+                        Direction = Directions.North;
+                        break;
+                    case Directions.East:
+                        Direction = Directions.East;
+                        break;
+                    case Directions.South:
+                        Direction = Directions.South;
                         break;
                 }
             }
         }
+        
+        static int Forward(int position) => ++position;
+
+        static int Backward(int position) => --position;
     }
     
 }

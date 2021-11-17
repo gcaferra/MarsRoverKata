@@ -1,4 +1,3 @@
-using System.ServiceModel;
 using MarsRover.Enums;
 using NUnit.Framework;
 using Shouldly;
@@ -13,7 +12,7 @@ namespace MarsRover.Test
             var point = new Point();
             var sut = new Rover(point);
             
-            sut.Point.ShouldBeEquivalentTo(point);
+            sut.Position.ShouldBeEquivalentTo(point);
         }
 
         [Test]
@@ -23,8 +22,8 @@ namespace MarsRover.Test
             
             var sut = new Rover(point);
             
-            sut.Point.X.ShouldBe(1);
-            sut.Point.Y.ShouldBe(2);
+            sut.Position.X.ShouldBe(1);
+            sut.Position.Y.ShouldBe(2);
         }
 
         [Test]
@@ -36,7 +35,7 @@ namespace MarsRover.Test
 
             sut.Move(new[] {"f", "f"});
             
-            sut.Point.X.ShouldBe(3);
+            sut.Position.X.ShouldBe(3);
         }
 
         [Test]
@@ -48,7 +47,7 @@ namespace MarsRover.Test
 
             sut.Move(new[] {"b", "b"});
             
-            sut.Point.X.ShouldBe(1);
+            sut.Position.X.ShouldBe(1);
         }
 
         [Test]
@@ -60,7 +59,7 @@ namespace MarsRover.Test
 
             sut.Move(new[] {"l", "l"});
             
-            sut.Point.Y.ShouldBe(1);
+            sut.Position.Y.ShouldBe(1);
         }
 
         [Test]
@@ -72,7 +71,7 @@ namespace MarsRover.Test
 
             sut.Move(new[] {"r", "r"});
             
-            sut.Point.Y.ShouldBe(5);
+            sut.Position.Y.ShouldBe(5);
         }
 
         [Test]
@@ -84,7 +83,7 @@ namespace MarsRover.Test
 
             sut.Move(new[] {"1", "e","d","q"});
             
-            sut.Point.ShouldBeEquivalentTo(point);
+            sut.Position.ShouldBeEquivalentTo(point);
         }
 
         [Test]
@@ -97,19 +96,30 @@ namespace MarsRover.Test
 
             sut.Move(new[] {Commands.Forward, Commands.Forward, Commands.Right, Commands.Right, Commands.Left, Commands.Backward});
             
-            sut.Point.ShouldBeEquivalentTo(expected);
+            sut.Position.ShouldBeEquivalentTo(expected);
         }
 
         [Test]
         public void the_Rover_has_directions()
         {
-
             var point = new Point {X = 1, Y = 1};
 
             var sut = new Rover(point);
             
             sut.Direction.ShouldBe(Directions.North);
+        }
 
+        [Test]
+        public void the_direction_can_change()
+        {
+            var point = new Point {X = 1, Y = 1};
+            string[] commands ={Commands.Forward, Commands.Right, Directions.West, Commands.Forward };
+
+            var sut = new Rover(point);
+
+            sut.Move(commands);
+            
+            sut.Direction.ShouldBeEquivalentTo(Directions.West);
         }
     }
 }
