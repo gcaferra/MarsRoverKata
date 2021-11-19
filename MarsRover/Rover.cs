@@ -1,4 +1,5 @@
 ﻿using MarsRover.Enums;
+using MarsRover.Mover;
 
 namespace MarsRover
 {
@@ -8,9 +9,10 @@ namespace MarsRover
         {
             Position = position;
             Direction = Directions.South;
+            Mover = new SouthMover();
         }
 
-        public Point Position { get; }
+        public Point Position { get; private set; }
         public string Direction { get; private set; }
 
         public void Move(string[] commands)
@@ -21,103 +23,29 @@ namespace MarsRover
                 {
                     case Directions.West:
                         Direction = Directions.West;
+                        Mover = new WestMover();
                         break;
                     case Directions.North:
                         Direction = Directions.North;
+                        Mover = new NorthMover();
                         break;
                     case Directions.East:
                         Direction = Directions.East;
+                        Mover = new EstMover();
                         break;
                     case Directions.South:
                         Direction = Directions.South;
+                        Mover = new SouthMover();
                         break;
                     default:
-                        if(Direction == Directions.South)
-                            MoveSouth(command);
-                        if(Direction == Directions.East)
-                            MoveEast(command);
-                        if(Direction == Directions.West)
-                            MoveWest(command);
-                        if(Direction == Directions.North)
-                            MoveNorth(command);
+                        Position = Mover.Move(command, Position);
                         break;
                 }
             }
         }
 
-        void MoveSouth(string command)
-        {
-            switch (command)
-            {
-                case "f":
-                    Position.X += 1;
-                    break;
-                case "b":
-                    Position.X -= 1;
-                    break;
-                case "l":
-                    Position.Y += 1;
-                    break;
-                case "r":
-                    Position.Y -= 1;
-                    break;
-            }
-        }
-
-        void MoveNorth(string command)
-        {
-            switch (command)
-            {
-                case "f":
-                    Position.X -= 1;
-                    break;
-                case "b":
-                    Position.X += 1;
-                    break;
-                case "l":
-                    Position.Y -= 1;
-                    break;
-                case "r":
-                    Position.Y += 1;
-                    break;
-            }
-        }
-        void MoveWest(string command)
-        {
-            switch (command)
-            {
-                case "f":
-                    Position.Y -= 1;
-                    break;
-                case "b":
-                    Position.Y += 1;
-                    break;
-                case "l":
-                    Position.X += 1;
-                    break;
-                case "r":
-                    Position.X -= 1;
-                    break;
-            }
-        }
-        void MoveEast(string command)
-        {
-            switch (command)
-            {
-                case "f":
-                    Position.Y += 1;
-                    break;
-                case "b":
-                    Position.Y -= 1;
-                    break;
-                case "l":
-                    Position.X -= 1;
-                    break;
-                case "r":
-                    Position.X += 1;
-                    break;
-            }
-        }
+        IMover Mover { get; set; }
     }
-    
+
+    public record Point(int X, int Y);
 }
