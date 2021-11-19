@@ -8,12 +8,10 @@ namespace MarsRover
         public Rover(Point position)
         {
             Position = position;
-            Direction = Directions.South;
             Mover = new SouthMover();
         }
 
         public Point Position { get; private set; }
-        public string Direction { get; private set; }
 
         public void Move(string[] commands)
         {
@@ -22,19 +20,15 @@ namespace MarsRover
                 switch (command)
                 {
                     case Directions.West:
-                        Direction = Directions.West;
                         Mover = new WestMover();
                         break;
                     case Directions.North:
-                        Direction = Directions.North;
                         Mover = new NorthMover();
                         break;
                     case Directions.East:
-                        Direction = Directions.East;
                         Mover = new EstMover();
                         break;
                     case Directions.South:
-                        Direction = Directions.South;
                         Mover = new SouthMover();
                         break;
                     default:
@@ -44,7 +38,7 @@ namespace MarsRover
             }
         }
 
-        IMover Mover { get; set; }
+        public IMover Mover { get; private set; }
     }
 
     public record Point(int X, int Y);

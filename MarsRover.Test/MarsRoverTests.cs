@@ -1,4 +1,5 @@
 using MarsRover.Enums;
+using MarsRover.Mover;
 using NUnit.Framework;
 using Shouldly;
 
@@ -99,17 +100,7 @@ namespace MarsRover.Test
 
             sut.Position.ShouldBeEquivalentTo(expected);
         }
-
-        [Test]
-        public void the_Rover_has_South_direction_when_land()
-        {
-            var point = new Point(1, 1);
-
-            var sut = new Rover(point);
-
-            sut.Direction.ShouldBe(Directions.South);
-        }
-
+        
         [Test]
         public void the_direction_can_change()
         {
@@ -120,7 +111,7 @@ namespace MarsRover.Test
 
             sut.Move(commands);
 
-            sut.Direction.ShouldBeEquivalentTo(Directions.West);
+            sut.Mover.ShouldBeOfType<WestMover>();
         }
 
         [Test]
